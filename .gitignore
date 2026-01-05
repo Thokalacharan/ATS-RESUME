@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+ENV/
+env/
+
+# Flask
+instance/
+.webassets-cache
+
+# Uploads and Cache
+uploads/*.pdf
+cache/*.json
+
+# Keep folders but not contents
+!uploads/.gitkeep
+!cache/.gitkeep
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Distribution
+.dist/
+build/
+dist/
+*.egg-info/
+
+# Environment
+.env
+.env.local
+
+# Logs
+*.log
