@@ -6,6 +6,10 @@ import os
 import hashlib
 import json
 from werkzeug.utils import secure_filename
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
@@ -21,11 +25,11 @@ app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max file size
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(CACHE_FOLDER, exist_ok=True)
 
-# Gemini API configuration
-API_KEY = "AIzaSyAseO0IbSyv2RsGipd3TW8QCUgk4uezz_0"
+# Gemini API configuration from environment variables
+API_KEY = os.getenv('GEMINI_API_KEY', '')
 
-# Demo mode - set to True to use mock data instead of API
-DEMO_MODE = True  # Set to False when you have a valid API key
+# Demo mode - load from environment or default to True
+DEMO_MODE = os.getenv('DEMO_MODE', 'True').lower() in ('true', '1', 'yes')
 
 def allowed_file(filename):
     """Check if file extension is allowed"""
