@@ -15,8 +15,9 @@ app = Flask(__name__)
 CORS(app)
 
 # Configuration
-UPLOAD_FOLDER = 'uploads'
-CACHE_FOLDER = 'cache'
+# Use /tmp for Vercel compatibility (serverless has read-only filesystem except /tmp)
+UPLOAD_FOLDER = os.path.join('/tmp', 'uploads') if os.environ.get('VERCEL') else 'uploads'
+CACHE_FOLDER = os.path.join('/tmp', 'cache') if os.environ.get('VERCEL') else 'cache'
 ALLOWED_EXTENSIONS = {'pdf'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max file size
